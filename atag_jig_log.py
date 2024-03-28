@@ -18,7 +18,7 @@ def establish_connection(port):
         return connection
 
     except: 
-        raise ConnectionAbortedError('No arduino connected')
+        print(port + ': No arduino connected')
 
 def receiver(serial_obj): 
     if serial_obj.inWaiting():
