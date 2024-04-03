@@ -1,11 +1,11 @@
-#define test_pin 2
+#define test_pin 43
 #define run_pin 3
-
 int run_count = 0;
+#define fail_pin 12
 
 
 void log_fail() {
-    Serial.println("Cable 1 FAIL - RUN:" + String(run_count) + ",\n");
+    digitalWrite(fail_pin, HIGH);
 }
 
 void add_to_run_count() {
@@ -18,7 +18,13 @@ void setup() {
     pinMode(run_pin, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(test_pin), log_fail, FALLING);
     attachInterrupt(digitalPinToInterrupt(run_pin), add_to_run_count, RISING);
+    digitalWrite(fail_pin, LOW);
 }
 
 void loop() {
+    Serial.println("running...");
+    delay(1000);
+    if (digitalRead(fail_pin) == HIGH) {
+        Serial.println("Cable 1 FAIL - RUN:" + String(run_count) + ",\n");
+    }
 }
