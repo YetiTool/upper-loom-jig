@@ -19,7 +19,7 @@ try:
             incoming_data = ser.readline().decode().strip()
             print("Received:", incoming_data)
             with open ('RESULTS.txt','a') as f:
-                f.write(incoming_data"\n")
+                f.write(incoming_data + "\n")
 except KeyboardInterrupt:
     print("Exiting...")
 finally:
