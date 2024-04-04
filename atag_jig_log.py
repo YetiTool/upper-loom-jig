@@ -18,6 +18,8 @@ try:
         if ser.in_waiting > 0:
             incoming_data = ser.readline().decode().strip()
             print("Received:", incoming_data)
+            with open ('RESULTS.txt','a') as f:
+                f.write(incoming_data)
 except KeyboardInterrupt:
     print("Exiting...")
 finally:
