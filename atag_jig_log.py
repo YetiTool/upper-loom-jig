@@ -12,6 +12,9 @@ except serial.SerialException as e:
     print("Failed to connect to Arduino:", e)
     exit()
 
+
+with open ('RESULTS.txt','a') as f:
+                f.write("START\n")
 # Main loop to read and print serial messages
 try:
     while True:
