@@ -11,7 +11,7 @@ def establish_connection(port):
         filesForDevice = listdir('/dev/') # put all device files into list[]
 
         for line in filesForDevice: # run through all files
-            line[:7] == port: # looks specifically for USB port that encoder is plugged into
+            line[:7] == port # looks specifically for USB port that encoder is plugged into
             devicePort = line # take whole line (includes suffix address e.g. ttyACM0
             connection = serial.Serial('/dev/' + str(devicePort), BAUD_RATE, timeout = 6, writeTimeout = 20) # assign
                 
