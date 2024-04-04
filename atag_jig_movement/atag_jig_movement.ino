@@ -1,5 +1,6 @@
 #define step_pin 12
 #define dir 13
+#define run_pin 11
 #define steps 7500
 
 void step() {
@@ -12,6 +13,7 @@ void step() {
 void setup() {
     pinMode(step_pin, OUTPUT);
     pinMode(dir, OUTPUT);
+    pinMode(run_pin, OUTPUT);
 }
 void loop() {
     digitalWrite(dir, LOW);
@@ -26,4 +28,8 @@ void loop() {
         step();
     }
     delay(1000);
+    digitalWrite(run_pin, HIGH);
+    delay(500);
+    digitalWrite(run_pin, LOW);
+    delay(500);
 }
