@@ -18,7 +18,7 @@ void setup() {
 
 void loop() {
     if (fail == true) {
-        Serial.print("Cable 1 FAIL - RUN: ");
+        Serial.print("Cable 2 FAIL - RUN: ");
         Serial.print(run_count);
         Serial.println(",");
         delay(300);
