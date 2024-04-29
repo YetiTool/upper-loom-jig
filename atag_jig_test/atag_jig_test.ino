@@ -11,24 +11,12 @@ void log_fail() {
 }
 
 void writeNumberToEEPROM(long number) {
-  // Split the number into bytes
-  byte byte1 = (number >> 16) & 0xFF;
-  byte byte2 = (number >> 8) & 0xFF;
-  byte byte3 = number & 0xFF;
-
-  // Write each byte to EEPROM
-  EEPROM.write(0, byte1);
-  EEPROM.write(1, byte2);
-  EEPROM.write(2, byte3);
+    EEPROM.put(0, number);
 }
 
 long readNumberFromEEPROM() {
-  // Read each byte from EEPROM and combine into a long number
-  byte byte1 = EEPROM.read(0);
-  byte byte2 = EEPROM.read(1);
-  byte byte3 = EEPROM.read(2);
-
-  long number = (byte1 << 16) | (byte2 << 8) | byte3;
+  long number;
+  EEPROM.get(0, number);
   return number;
 }
 
@@ -42,6 +30,7 @@ void setup() {
 }
 
 void loop() {
+    // FAILURE REPORTING
     if (fail == true) {
         Serial.print("Cable 2 FAIL - RUN: ");
         Serial.print(run_count);
@@ -49,6 +38,8 @@ void loop() {
         delay(300);
         fail = false;
     }
+
+    //  RUN COUNT HANDLING
     bool pin_state = digitalRead(run_pin);
     if (pin_state == HIGH && !triggered) {
         triggered = true;
@@ -58,7 +49,11 @@ void loop() {
         triggered = false;
     }
     delay(50);
-    if (run_count % 50 == 0) {
+    if (run_count % 1000 == 0) {
         writeNumberToEEPROM(run_count);
+        Serial.print("Run Count: ");
+        Serial.print(run_count);
+        Serial.println(",");
+
     }
 }
