@@ -16,7 +16,6 @@ except serial.SerialException as e:
 with open ('RESULTS.txt','a') as f:
                 f.write("START\n")
                 f.close()
-# Main loop to read and print serial messages
 try:
     while True:
         if ser.in_waiting > 0:
@@ -27,5 +26,4 @@ try:
 except KeyboardInterrupt:
     print("Exiting...")
 finally:
-    # Close the serial connection
     ser.close()
