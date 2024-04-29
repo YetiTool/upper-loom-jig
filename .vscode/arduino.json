@@ -1,7 +1,0 @@
-{
-    "port": "COM10",
-    "configuration": "cpu=atmega2560",
-    "board": "arduino:avr:mega",
-    "programmer": "avrispmkii",
-    "sketch": "eeprom_clear\\eeprom_clear.ino"
-}

@@ -5,6 +5,7 @@
 long run_count = 0;
 volatile bool fail = false;
 bool triggered = false;
+bool loggedCount = false;
 
 void log_fail() {
     fail = true;
@@ -50,10 +51,14 @@ void loop() {
     }
     delay(50);
     if (run_count % 1000 == 0) {
-        writeNumberToEEPROM(run_count);
-        Serial.print("Run Count: ");
-        Serial.print(run_count);
-        Serial.println(",");
-
+        if (!loggedCount) {
+            writeNumberToEEPROM(run_count);
+            Serial.print("Run Count: ");
+            Serial.print(run_count);
+            Serial.println(",");
+            loggedCount = true;
+        }
+    }else {
+        loggedCount = false;
     }
 }
