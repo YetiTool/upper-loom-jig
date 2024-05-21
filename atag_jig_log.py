@@ -5,6 +5,8 @@ from datetime import datetime
 SERIAL_PORT = '/dev/ttyACM0'  # Change this to match your Arduino's serial port
 BAUD_RATE = 115200
 
+current_time = datetime.now().strftime("%d-%m-%Y %H-%M-%S")
+
 with open ('RESULTS.txt','a') as f:
                 f.write(f"START {current_time}\n")
                 f.close()
@@ -17,7 +19,6 @@ except serial.SerialException as e:
     print("Failed to connect to Arduino:", e)
     exit()
 
-current_time = datetime.now().strftime("%d-%m-%Y %H-%M-%S")
 
 with open ('RESULTS.txt','a') as f:
                 f.write(f"START {current_time}\n")
