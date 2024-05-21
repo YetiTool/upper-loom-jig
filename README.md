@@ -1,5 +1,5 @@
 # Clone the repo and make launcher.sh executable
-- Clone this repo into _/home/pi_ by using `Git Clone https://github.com/YetiTool/upper-loom-jig`
+- Clone this repo into _/home/pi_ by using `git clone https://github.com/YetiTool/upper-loom-jig`
 - Access the repository directory by running `cd upper-loom-jig`
 - Make the launcher script executable by running `chmod +x launcher.sh`
 # Make launcher.sh run on boot by making it a cronjob
