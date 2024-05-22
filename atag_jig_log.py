@@ -7,7 +7,7 @@ BAUD_RATE = 115200
 
 current_time = datetime.now().strftime("%d-%m-%Y %H-%M-%S")
 
-with open ('/home/pi/RESULTS.txt','a') as f:
+with open ('/home/pi/upper-loom-jig/RESULTS.txt','a') as f:
                 f.write(f"START {current_time}\n")
                 f.close()
 
