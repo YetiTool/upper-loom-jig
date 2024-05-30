@@ -38,7 +38,7 @@ def update_content():
             text_widgets[i].delete('1.0', tk.END)
             text_widgets[i].insert(tk.END, contents[i])
         # Update the timestamp label
-        last_updated_time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+        last_updated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         timestamp_label.config(text=f"Last Updated: {last_updated_time}")
         time.sleep(10)
 
@@ -50,20 +50,34 @@ def exit_fullscreen(event=None):
 
 # Create the main window
 root = tk.Tk()
-root.title("SSH File Viewer")
+root.title("Upper Loom Jig Monitor")
 
+# Make the window fullscreen
 root.attributes('-fullscreen', True)
 root.bind('<F11>', toggle_fullscreen)
 root.bind('<Escape>', exit_fullscreen)
 
-# Create Text widgets for displaying file contents
-text_widgets = [tk.Text(root, wrap=tk.WORD, width=60, height=40, font=('Montserrat', 10)) for _ in range(3)]
-for i, text_widget in enumerate(text_widgets):
-    text_widget.grid(row=0, column=i, padx=5, pady=5)
+# Create a frame to contain the text widgets
+text_frame = tk.Frame(root, bg='#1d1e1f')
+text_frame.pack(fill=tk.BOTH, expand=True)
 
-# Create a label to display the timestamp of the last update
-timestamp_label = tk.Label(root, text="Last Updated: Never", anchor='w', font=('Montserrat', 16))
-timestamp_label.grid(row=1, column=0, columnspan=3, padx=5, pady=5, sticky='w')
+# Create Text widgets for displaying file contents with a specified width
+text_widgets = [tk.Text(text_frame, wrap=tk.WORD, font=('Montserrat', 14), bg='#1d1e1f', fg='#ebeef2') for _ in range(3)]
+for i, text_widget in enumerate(text_widgets):
+    text_widget.grid(row=0, column=i, sticky="nsew")
+
+# Configure weight to make each widget occupy 30% of the screen width
+text_frame.grid_columnconfigure(0, weight=1)
+text_frame.grid_columnconfigure(1, weight=1)
+text_frame.grid_columnconfigure(2, weight=1)
+
+
+timestamp_frame = tk.Frame(root, bg='#3f4c59')  # Change "#ff0000" to your desired background color
+timestamp_frame.pack(side=tk.BOTTOM, fill=tk.X, ipady=10, expand=False)
+
+# Create a label to display the timestamp of the last update with a larger font
+timestamp_label = tk.Label(timestamp_frame, text="Last Updated: Never", font=('Montserrat', 16), bg='#3f4c59', fg='#ebeef2')  # Adjust colors as needed
+timestamp_label.pack(side=tk.LEFT, padx=5, pady=5)
 
 # Start the thread to update content
 update_thread = Thread(target=update_content, daemon=True)
