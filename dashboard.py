@@ -62,9 +62,10 @@ text_frame = tk.Frame(root, bg='#1d1e1f')
 text_frame.pack(fill=tk.BOTH, expand=True)
 
 # Create Text widgets for displaying file contents with a specified width
-text_widgets = [tk.Text(text_frame, wrap=tk.WORD, font=('Montserrat', 14), bg='#1d1e1f', fg='#ebeef2') for _ in range(3)]
+text_widgets = [tk.Text(text_frame, wrap=tk.WORD, font=('Montserrat', 16), bg='#1d1e1f', fg='#ebeef2') for _ in range(3)]
 for i, text_widget in enumerate(text_widgets):
     text_widget.grid(row=0, column=i, sticky="nsew")
+    text_frame.grid_rowconfigure(0, weight=1)
 
 # Configure weight to make each widget occupy 30% of the screen width
 text_frame.grid_columnconfigure(0, weight=1)
