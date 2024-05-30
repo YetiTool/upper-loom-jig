@@ -38,7 +38,7 @@ def update_content():
             text_widgets[i].delete('1.0', tk.END)
             text_widgets[i].insert(tk.END, contents[i])
         # Update the timestamp label
-        last_updated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        last_updated_time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         timestamp_label.config(text=f"Last Updated: {last_updated_time}")
         time.sleep(10)
 
