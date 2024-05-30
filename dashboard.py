@@ -42,12 +42,19 @@ def update_content():
         timestamp_label.config(text=f"Last Updated: {last_updated_time}")
         time.sleep(10)
 
+def toggle_fullscreen(event=None):
+    root.attributes('-fullscreen', not root.attributes('-fullscreen'))
+
+def exit_fullscreen(event=None):
+    root.attributes('-fullscreen', False)
 
 # Create the main window
 root = tk.Tk()
 root.title("SSH File Viewer")
 
 root.attributes('-fullscreen', True)
+root.bind('<F11>', toggle_fullscreen)
+root.bind('<Escape>', exit_fullscreen)
 
 # Create Text widgets for displaying file contents
 text_widgets = [tk.Text(root, wrap=tk.WORD, width=60, height=40, font=('Montserrat', 10)) for _ in range(3)]
