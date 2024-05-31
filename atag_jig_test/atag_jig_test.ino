@@ -1,7 +1,7 @@
 #include <EEPROM.h>
 
 #define test_pin 2
-#define run_pin 3
+#define run_pin 7
 long run_count = 0;
 volatile bool fail = false;
 bool triggered = false;
@@ -33,7 +33,7 @@ void setup() {
 void loop() {
     // FAILURE REPORTING
     if (fail == true) {
-        Serial.print("Cable 3 FAIL - RUN: ");
+        Serial.print("Cable 1 FAIL - RUN: ");
         Serial.print(run_count);
         Serial.println(",");
         delay(300);

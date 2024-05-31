@@ -1,6 +1,6 @@
 #include <EEPROM.h>
 
-#define startRunCount 19000
+#define startRunCount 20000
 
 void writeNumberToEEPROM(long number) {
     EEPROM.put(0, number);
