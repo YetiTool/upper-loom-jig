@@ -24,7 +24,7 @@ long readNumberFromEEPROM() {
 void setup() {
     Serial.begin(115200);
     pinMode(test_pin, INPUT_PULLUP);
-    pinMode(run_pin, INPUT_PULLUP);
+    pinMode(run_pin, INPUT);
     attachInterrupt(digitalPinToInterrupt(test_pin), log_fail, RISING);
     long storedNumber = readNumberFromEEPROM();
     run_count = storedNumber;
@@ -50,7 +50,7 @@ void loop() {
         triggered = false;
     }
     delay(50);
-    if (run_count % 1000 == 0) {
+    if (run_count % 500 == 0) {
         if (!loggedCount) {
             writeNumberToEEPROM(run_count);
             Serial.print("Run Count: ");
