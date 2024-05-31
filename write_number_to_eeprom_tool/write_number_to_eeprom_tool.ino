@@ -1,11 +1,10 @@
 #include <EEPROM.h>
 
-#define startRunCount 12000
+#define startRunCount 19000
 
 void writeNumberToEEPROM(long number) {
     EEPROM.put(0, number);
     }
-
 
 void setup() {
     pinMode(13, OUTPUT);
