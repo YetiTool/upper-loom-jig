@@ -33,7 +33,7 @@ void setup() {
 void loop() {
     // FAILURE REPORTING
     if (fail == true) {
-        Serial.print("Cable 1 FAIL - RUN: ");
+        Serial.print("Cable 3 FAIL - RUN: ");
         Serial.print(run_count);
         Serial.println(",");
         delay(300);

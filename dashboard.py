@@ -30,30 +30,6 @@ def read_ssh_file(details):
     
     return file_content
 
-# def read_ssh_file(details):
-#     """Read a file from an SSH server and return the last 30 lines."""
-#     while True:
-#         try:
-#             client = paramiko.SSHClient()
-#             client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-#             client.connect(details['hostname'], port=details['port'], username=details['username'], password=details['password'])
-            
-#             sftp = client.open_sftp()
-#             file_content = ''
-#             with sftp.open(details['file_path'], 'r') as file:
-#                 lines = file.readlines()
-#                 # Get the last 30 lines
-#                 last_lines = lines[-30:]
-#                 file_content = ''.join(last_lines)
-            
-#             sftp.close()
-#             client.close()
-            
-#             return file_content
-#         except (paramiko.SSHException, IOError) as e:
-#             print(f"Failed to connect to {details['hostname']}, retrying in 5 seconds...")
-#             time.sleep(5)  # Wait for 5 seconds before retrying
-
 def update_content():
     """Fetch content from all SSH sources and update the GUI."""
     while True:
